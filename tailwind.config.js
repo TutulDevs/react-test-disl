@@ -14,9 +14,11 @@ module.exports = {
       },
       gridTemplateRows: {
         layout: "auto 1fr auto",
+        main: "auto 1fr",
       },
       gridTemplateColumns: {
-        main: "300px 1fr",
+        main: "200px 1fr",
+        mainMd: "300px 1fr",
       },
     },
   },

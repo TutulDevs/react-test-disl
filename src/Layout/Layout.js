@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import SideBar from "./Sidebar";
 
 const Layout = (props) => {
   return (
@@ -8,10 +9,12 @@ const Layout = (props) => {
       <Header />
 
       {/* main with sidebar */}
-      <main className="bg-green-300 w-11/12 mx-auto grid gap-4 grid-cols-1 md:grid-cols-main">
-        <aside className="bg-indigo-200">This is Sidebar</aside>
+      <main className="w-11/12 mx-auto grid gap-6 grid-cols-1 sm:grid-cols-main md:grid-cols-mainMd grid-rows-main sm:grid-rows-none">
+        {/* Sidebar */}
+        <SideBar />
 
-        <section className="bg-indigo-300">{props.children}</section>
+        {/* Main Section */}
+        <section className="border rounded-xl p-4">{props.children}</section>
       </main>
 
       {/* Footer */}
