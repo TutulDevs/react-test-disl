@@ -2,6 +2,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import Counter from "./Pages/Counter";
 import ErrorPage from "./Pages/ErrorPage";
+import Form from "./Pages/Form";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         </Route>
 
         <Route path="/counter" component={Counter} />
+        <Route path="/form" component={Form} />
 
         {/* Error page */}
         <Route path="*" component={ErrorPage} />
