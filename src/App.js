@@ -1,9 +1,22 @@
+import { Switch, Route, Redirect } from "react-router-dom";
 import Layout from "./Layout/Layout";
+import Counter from "./Pages/Counter";
 
 function App() {
   return (
     <Layout>
-      <h1>Let's build in the section</h1>
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/counter" />
+        </Route>
+
+        <Route path="/counter" component={Counter} />
+
+        {/* Error page */}
+        <Route path="*">
+          <h1>Wrong</h1>
+        </Route>
+      </Switch>
     </Layout>
   );
 }

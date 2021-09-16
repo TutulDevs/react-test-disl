@@ -4,7 +4,7 @@ import SideBar from "./Sidebar";
 
 const Layout = (props) => {
   return (
-    <div className="font-openSans min-h-screen w-screen mx-auto grid gap-4 grid-rows-layout">
+    <div className="font-openSans min-h-screen mx-auto grid gap-6 grid-rows-layout">
       {/* Header */}
       <Header />
 
@@ -14,7 +14,9 @@ const Layout = (props) => {
         <SideBar />
 
         {/* Main Section */}
-        <section className="border rounded-xl p-4">{props.children}</section>
+        <section className="border border-gray-100 rounded-xl py-2">
+          {props.children}
+        </section>
       </main>
 
       {/* Footer */}
