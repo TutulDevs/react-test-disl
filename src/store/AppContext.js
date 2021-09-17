@@ -5,6 +5,7 @@ export const AppContext = React.createContext({
   counter: 0,
   onIncreaseCounter: () => {},
   userList: [],
+  onAddUser: () => {},
 });
 
 // provider
@@ -19,7 +20,11 @@ export const AppProvider = (props) => {
     },
   ]);
 
+  // counter handler
   const counterIncreaseHandler = () => setCounter(counter + 1);
+
+  // adding users
+  const addUserHandler = (userData) => setUserList(userList.concat(userData));
 
   return (
     <AppContext.Provider
@@ -27,6 +32,7 @@ export const AppProvider = (props) => {
         counter,
         onIncreaseCounter: counterIncreaseHandler,
         userList,
+        onAddUser: addUserHandler,
       }}
     >
       {props.children}

@@ -1,4 +1,5 @@
 import { useContext, useRef } from "react";
+import { useHistory } from "react-router";
 import PageHeader from "../components/UI/PageHeader";
 import AppContext from "../store/AppContext";
 
@@ -9,13 +10,13 @@ const Form = () => {
   const genderRef = useRef();
   const phoneRef = useRef();
 
+  // history
+  const history = useHistory();
+
   // userList
-  const { userList } = useContext(AppContext);
+  const { userList, onAddUser } = useContext(AppContext);
 
-  //   let a = userList.filter((el) => el.email === "test@test.dev").length;
-  //   // let b = a.length === 0 ? false : true;
-  //   console.log(!!a);
-
+  // form handling
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,15 +37,14 @@ const Form = () => {
     // let's check if the email is in the context array
     // if true > return and alert
     // if false (doesn't match) > add into the context array
-    const sameEmail = userList.filter(
-      (el) => el.email === userData.email
-    ).length;
+    const sameEmail = userList.filter((el) => el.email === userData.email);
 
-    if (sameEmail) {
+    if (sameEmail.length) {
       alert("The given email id is in use! \nTry with another email.");
       return;
     } else {
-      console.log(userData);
+      onAddUser(userData);
+      history.push("/list");
     }
   };
 
