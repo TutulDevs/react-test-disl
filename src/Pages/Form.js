@@ -1,10 +1,51 @@
+import { useContext, useRef } from "react";
 import PageHeader from "../components/UI/PageHeader";
+import AppContext from "../store/AppContext";
 
 const Form = () => {
+  // input refs
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const genderRef = useRef();
+  const phoneRef = useRef();
+
+  // userList
+  const { userList } = useContext(AppContext);
+
+  //   let a = userList.filter((el) => el.email === "test@test.dev").length;
+  //   // let b = a.length === 0 ? false : true;
+  //   console.log(!!a);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("submit");
+    // values
+    const nameValue = nameRef.current.value.trim();
+    const emailValue = emailRef.current.value.trim();
+    const genderValue = genderRef.current.value;
+    const phoneValue = phoneRef.current.value;
+
+    // data object
+    const userData = {
+      name: nameValue,
+      email: emailValue,
+      gender: genderValue,
+      phone: Number(phoneValue),
+    };
+
+    // let's check if the email is in the context array
+    // if true > return and alert
+    // if false (doesn't match) > add into the context array
+    const sameEmail = userList.filter(
+      (el) => el.email === userData.email
+    ).length;
+
+    if (sameEmail) {
+      alert("The given email id is in use! \nTry with another email.");
+      return;
+    } else {
+      console.log(userData);
+    }
   };
 
   return (
@@ -22,6 +63,7 @@ const Form = () => {
             Full Name
           </label>
           <input
+            ref={nameRef}
             type="text"
             name="name"
             id="name"
@@ -37,6 +79,7 @@ const Form = () => {
             Email
           </label>
           <input
+            ref={emailRef}
             type="email"
             name="email"
             id="email"
@@ -52,6 +95,7 @@ const Form = () => {
             Gender
           </label>
           <select
+            ref={genderRef}
             name="gender"
             id="gender"
             required
@@ -68,6 +112,7 @@ const Form = () => {
             Telephone
           </label>
           <input
+            ref={phoneRef}
             type="number"
             name="phone"
             id="phone"

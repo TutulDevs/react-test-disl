@@ -4,11 +4,21 @@ import React, { useState } from "react";
 export const AppContext = React.createContext({
   counter: 0,
   onIncreaseCounter: () => {},
+  userList: [],
 });
 
 // provider
 export const AppProvider = (props) => {
   const [counter, setCounter] = useState(0);
+  const [userList, setUserList] = useState([
+    {
+      name: "abc",
+      email: "test@test.dev",
+      gender: "male",
+      phone: 12345,
+    },
+  ]);
+
   const counterIncreaseHandler = () => setCounter(counter + 1);
 
   return (
@@ -16,6 +26,7 @@ export const AppProvider = (props) => {
       value={{
         counter,
         onIncreaseCounter: counterIncreaseHandler,
+        userList,
       }}
     >
       {props.children}
