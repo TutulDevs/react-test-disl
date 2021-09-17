@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import TableBody from "../components/TableBody";
 import PageHeader from "../components/UI/PageHeader";
 import AppContext from "../store/AppContext";
+import TableData from "../components/TableData";
 
 const List = () => {
   const { userList } = useContext(AppContext);
@@ -18,7 +18,7 @@ const List = () => {
         )}
 
         {/* if theres items */}
-        {userList.length && <TableBody users={userList} />}
+        {userList.length && <TableData users={userList} />}
       </div>
     </>
   );
