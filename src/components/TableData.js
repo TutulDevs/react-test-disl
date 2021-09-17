@@ -5,8 +5,9 @@ import TableBody from "./TableBody";
 
 // classes
 const classes = {
-  table: `border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative`,
+  table: `border-collapse table-auto w-full max-w-screen-md mx-auto whitespace-no-wrap bg-white table-striped relative`,
   th: `border border-green-500 bg-green-500 text-white p-1 py-2 cursor-pointer`,
+  paginationContainer: `w-full max-w-screen-md mx-auto p-1 mt-4 flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center`,
 };
 
 const TableData = ({ users }) => {
@@ -38,6 +39,7 @@ const TableData = ({ users }) => {
 
   return (
     <>
+      {/* Table */}
       <table className={classes.table}>
         <thead>
           <tr>
@@ -58,7 +60,7 @@ const TableData = ({ users }) => {
       </table>
 
       {/* Pagination */}
-      <div className="p-1 my-4 flex flex-col sm:flex-row justify-between items-center">
+      <div className={classes.paginationContainer}>
         <div className="mb-3 sm:mb-0">
           <label htmlFor="paginationSelect" className="pr-2">
             Per Page
@@ -70,11 +72,10 @@ const TableData = ({ users }) => {
             className="bg-white border w-12 pl-1"
             onChange={handleItemsPerPage}
           >
-            <option value="3">3</option>
             <option value="5">5</option>
-            <option value="7">7</option>
             <option value="10">10</option>
             <option value="15">15</option>
+            <option value="20">20</option>
           </select>
         </div>
 

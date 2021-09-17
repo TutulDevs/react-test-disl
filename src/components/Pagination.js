@@ -2,8 +2,8 @@ import React from "react";
 
 // classes
 const classes = {
-  btn: `mx-1 p-0 w-8 h-8 rounded-full bg-green-100`,
-  btnActive: `mx-1 p-0 w-8 h-8 rounded-full bg-green-200 ring-2 ring-green-400`,
+  btn: `m-1 p-0 w-8 h-8 rounded-full bg-green-100`,
+  btnActive: `m-1 p-0 w-8 h-8 rounded-full bg-green-200 ring-2 ring-green-400`,
 };
 
 const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
