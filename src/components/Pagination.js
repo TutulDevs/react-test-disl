@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // classes
 const classes = {
@@ -8,6 +8,10 @@ const classes = {
 
 const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
   const pageNumbers = [];
+
+  useEffect(() => {
+    window.scrollTo({ behavior: "smooth", top: "0px" });
+  }, [currentPage]);
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
