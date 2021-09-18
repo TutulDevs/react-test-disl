@@ -15,11 +15,31 @@ const TableData = ({ users }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
+  // search filter
+  const [searchItem, setSearchItem] = useState("");
+
+  // search val
+  const searchHelper = (item) =>
+    item.toLowerCase().includes(searchItem.toLowerCase());
+
+  const handleSearchArr = (arr) => {
+    return arr.filter((item) => {
+      if (searchItem === "") return item;
+      if (
+        searchHelper(item.name) ||
+        searchHelper(item.email) ||
+        searchHelper(item.gender) ||
+        searchHelper(item.phone)
+      )
+        return item;
+    });
+  };
+
+  // sorting data with searching fn
+  const { items, requestSort } = useSortableData(handleSearchArr(users));
+
   // handle per page
   const handleItemsPerPage = (e) => setItemsPerPage(e.target.value);
-
-  // sorting data
-  const { items, requestSort } = useSortableData(users);
 
   // pagination
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -39,6 +59,16 @@ const TableData = ({ users }) => {
 
   return (
     <>
+      {/* Search */}
+      <input
+        type="search"
+        name="search"
+        id="search"
+        placeholder="Search..."
+        className="mb-4 px-2 pt-1.5 pb-1.5 float-left outline-none rounded-md border border-green-200 focus:border-green-400 focus:ring-4 focus:ring-green-200"
+        onKeyUp={(e) => setSearchItem(e.target.value)}
+      />
+
       {/* Table */}
       <table className={classes.table}>
         <thead>
@@ -76,6 +106,7 @@ const TableData = ({ users }) => {
             <option value="10">10</option>
             <option value="15">15</option>
             <option value="20">20</option>
+            <option value="25">25</option>
           </select>
         </div>
 
