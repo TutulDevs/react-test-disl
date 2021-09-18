@@ -9,6 +9,8 @@ const classes = {
   table: `border-collapse table-auto w-full max-w-screen-md mx-auto whitespace-no-wrap bg-white table-striped relative`,
   th: `border border-green-500 bg-green-500 text-white p-1 py-2 cursor-pointer`,
   paginationContainer: `w-full max-w-screen-md mx-auto p-1 mt-4 flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center`,
+  searchBar: `w-full max-w-screen-md mx-auto flex mb-4 pb-1`,
+  searchInput: `w-full sm:w-auto px-2 pt-1.5 pb-1.5 outline-none rounded-md border border-green-200 focus:border-green-400 focus:ring-4 focus:ring-green-200`,
 };
 
 const TableData = ({ users }) => {
@@ -64,14 +66,16 @@ const TableData = ({ users }) => {
   return (
     <>
       {/* Search */}
-      <input
-        type="text"
-        name="search"
-        id="search"
-        placeholder="Search..."
-        className="mb-4 px-2 pt-1.5 pb-1.5 float-left outline-none rounded-md border border-green-200 focus:border-green-400 focus:ring-4 focus:ring-green-200"
-        onKeyUp={(e) => setSearchItem(e.target.value)}
-      />
+      <div className={classes.searchBar}>
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Search..."
+          className={classes.searchInput}
+          onKeyUp={(e) => setSearchItem(e.target.value)}
+        />
+      </div>
 
       {/* Table */}
       <table className={classes.table}>
