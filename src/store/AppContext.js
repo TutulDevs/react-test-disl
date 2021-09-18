@@ -6,12 +6,15 @@ export const AppContext = React.createContext({
   onIncreaseCounter: () => {},
   userList: [],
   onAddUser: () => {},
+  paginationItemsPerPage: 5,
+  onPaginationItemsPerPage: () => {},
 });
 
 // provider
 export const AppProvider = (props) => {
   const [counter, setCounter] = useState(0);
   const [userList, setUserList] = useState([]);
+  const [paginationItemsPerPage, setPaginationItemsPerPage] = useState(5);
 
   // fetch users
   useEffect(() => {
@@ -56,6 +59,10 @@ export const AppProvider = (props) => {
   // adding users
   const addUserHandler = (userData) => setUserList(userList.concat(userData));
 
+  // pagination items per page
+  const handlePaginationItemsPerPage = (size) =>
+    setPaginationItemsPerPage(size);
+
   return (
     <AppContext.Provider
       value={{
@@ -63,6 +70,8 @@ export const AppProvider = (props) => {
         onIncreaseCounter: counterIncreaseHandler,
         userList,
         onAddUser: addUserHandler,
+        paginationItemsPerPage,
+        onPaginationItemsPerPage: handlePaginationItemsPerPage,
       }}
     >
       {props.children}
@@ -71,14 +80,3 @@ export const AppProvider = (props) => {
 };
 
 export default AppContext;
-
-/*
-
-   {
-      name: "Scarlet Johansson",
-      email: "test@test.dev",
-      gender: "female",
-      phone: 123456789,
-    },
-
-*/

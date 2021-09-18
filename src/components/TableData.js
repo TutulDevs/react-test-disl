@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useSortableData from "../hooks/useSortTable";
+import AppContext from "../store/AppContext";
 import Pagination from "./Pagination";
 import TableBody from "./TableBody";
 
@@ -13,10 +14,13 @@ const classes = {
 const TableData = ({ users }) => {
   // pagination setup
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   // search filter
   const [searchItem, setSearchItem] = useState("");
+
+  // context
+  const { paginationItemsPerPage, onPaginationItemsPerPage } =
+    useContext(AppContext);
 
   // search val
   const searchHelper = (item) =>
@@ -38,12 +42,12 @@ const TableData = ({ users }) => {
   // sorting data with searching fn
   const { items, requestSort } = useSortableData(handleSearchArr(users));
 
-  // handle per page
-  const handleItemsPerPage = (e) => setItemsPerPage(e.target.value);
+  // handle items per page
+  const handleItemsPerPage = (e) => onPaginationItemsPerPage(e.target.value);
 
   // pagination
-  const indexOfLastPost = currentPage * itemsPerPage;
-  const indexOfFirstPost = indexOfLastPost - itemsPerPage;
+  const indexOfLastPost = currentPage * paginationItemsPerPage;
+  const indexOfFirstPost = indexOfLastPost - paginationItemsPerPage;
   const currentItems = items.slice(indexOfFirstPost, indexOfLastPost);
 
   // change page
@@ -61,7 +65,7 @@ const TableData = ({ users }) => {
     <>
       {/* Search */}
       <input
-        type="search"
+        type="text"
         name="search"
         id="search"
         placeholder="Search..."
@@ -101,6 +105,7 @@ const TableData = ({ users }) => {
             id="paginationSelect"
             className="bg-white border w-12 pl-1"
             onChange={handleItemsPerPage}
+            value={paginationItemsPerPage}
           >
             <option value="5">5</option>
             <option value="10">10</option>
@@ -111,7 +116,7 @@ const TableData = ({ users }) => {
         </div>
 
         <Pagination
-          itemsPerPage={itemsPerPage}
+          itemsPerPage={paginationItemsPerPage}
           totalItems={items.length}
           paginate={paginate}
           currentPage={currentPage}
