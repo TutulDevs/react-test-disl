@@ -1,4 +1,19 @@
-# Getting Started with Create React App
+# React.js Test Project for Dhrubok Infotech Services Ltd.
+
+This is a test project for a Reactjs developer position. I'm sharing the requirements so that anyone can try on their own or assess my code.
+
+🚀 **[Live Link](https://disl-test.netlify.app/)**
+
+#### 🗒 Requirements can be found [here](https://docs.google.com/document/d/1uaxwsp-0qZJcL5KnXC04pKNiU8-MA0fj/edit).
+
+#### ⚙ Tools:
+
+- Styling: [Tailwind CSS](https://tailwindcss.com/)
+- Hosting: [Netlify](https://www.netlify.com/)
+
+---
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
