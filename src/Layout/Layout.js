@@ -9,7 +9,7 @@ const Layout = (props) => {
       <Header />
 
       {/* main with sidebar */}
-      <main className="w-11/12 mx-auto grid gap-6 grid-cols-1 md:grid-cols-main  grid-rows-main md:grid-rows-none">
+      <main className="w-11/12 mx-auto grid gap-6 grid-cols-1 md:grid-cols-mainMd  grid-rows-main md:grid-rows-none">
         {/* Sidebar */}
         <SideBar />
 
