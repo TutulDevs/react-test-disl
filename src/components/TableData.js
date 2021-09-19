@@ -45,7 +45,10 @@ const TableData = ({ users }) => {
   const { items, requestSort } = useSortableData(handleSearchArr(users));
 
   // handle items per page
-  const handleItemsPerPage = (e) => onPaginationItemsPerPage(e.target.value);
+  const handleItemsPerPage = (e) => {
+    onPaginationItemsPerPage(e.target.value);
+    setCurrentPage(1);
+  };
 
   // pagination
   const indexOfLastPost = currentPage * paginationItemsPerPage;
