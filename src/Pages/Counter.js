@@ -1,9 +1,25 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import PageHeader from "../components/UI/PageHeader";
 import AppContext from "../store/AppContext";
 
 const Counter = () => {
+  const [triggerAnimation, setTriggerAnimation] = useState(false);
   const { counter, onIncreaseCounter } = useContext(AppContext);
+
+  // animation
+  useEffect(() => {
+    setTriggerAnimation(true);
+
+    const timer = setTimeout(() => setTriggerAnimation(false), 200);
+
+    // clear effect
+    return () => clearTimeout(timer);
+  }, [counter]);
+
+  const classForCounter = `text-9xl text-white font-semibold mb-8 delay-300`;
+  const counterClass = triggerAnimation
+    ? `${classForCounter} animate-ping`
+    : classForCounter;
 
   return (
     <>
@@ -12,7 +28,7 @@ const Counter = () => {
       {/* Counter components */}
       <div className="flex flex-col justify-center items-center text-center p-4 h-5/6">
         <h2
-          className="text-9xl text-white font-semibold mb-6"
+          className={counterClass}
           style={{
             textShadow: `2px 2px 0 #34d399, 2px -2px 0 #34d399, -2px 2px 0 #34d399, -2px -2px 0 #34d399, 2px 0px 0 #34d399, 0px 2px 0 #34d399, -2px 0px 0 #34d399, 0px -2px 0 #34d399`,
           }}
