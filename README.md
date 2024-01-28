@@ -1,4 +1,4 @@
-# React.js Test Project for Dhrubok Infotech Services Ltd.
+# React.js Test Project for Practice
 
 This is a test project for a Reactjs developer position. I'm sharing the requirements so that anyone can try on their own or assess my code.
 
